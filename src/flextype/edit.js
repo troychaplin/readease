@@ -31,8 +31,8 @@ import './editor.scss';
  */
 export default function Edit() {
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Flextype – hello from the editor!', 'flextype' ) }
+		<p {...useBlockProps()}>
+			{__('Flextype – hello from the editor!', 'flextype')}
 		</p>
 	);
 }

@@ -1,25 +1,37 @@
 {
 	"name": "flextype",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"description": "FlexType is a Gutenberg block plugin that provides visitor text resizing controls.",
+	"author": "Troy Chaplin",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
-		"format": "wp-scripts format",
+		"lint": "npm-run-all lint:*",
+		"format": "npm-run-all format:*",
 		"lint:css": "wp-scripts lint-style",
+		"format:css": "wp-scripts lint-style --fix",
 		"lint:js": "wp-scripts lint-js",
+		"format:js": "wp-scripts lint-js --fix",
+		"lint:php": "composer run lint",
+		"format:php": "composer format",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php --blocks-manifest"
 	},
-	"dependencies": {
+	"devDependencies": {
+		"@stylistic/stylelint-plugin": "^3.1.3",
 		"@wordpress/block-editor": "latest",
 		"@wordpress/blocks": "latest",
-		"@wordpress/i18n": "latest"
-	},
-	"devDependencies": {
-		"@wordpress/scripts": "^31.3.0"
+		"@wordpress/env": "^10.33.0",
+		"@wordpress/eslint-plugin": "^22.21.0",
+		"@wordpress/i18n": "latest",
+		"@wordpress/icons": "^11.3.0",
+		"@wordpress/prettier-config": "^4.35.0",
+		"@wordpress/scripts": "^31.3.0",
+		"@wordpress/stylelint-config": "^23.27.0",
+		"npm-run-all": "^4.1.5",
+		"stylelint": "^16.26.0",
+		"stylelint-scss": "^6.12.1"
 	}
 }
