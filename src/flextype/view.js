@@ -21,5 +21,5 @@
  */
 
 /* eslint-disable no-console */
-console.log( 'Hello World! (from create-block-flextype block)' );
+console.log('Hello World! (from create-block-flextype block)');
 /* eslint-enable no-console */

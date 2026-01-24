@@ -1,0 +1,18 @@
+{
+	"name": "troychaplin/flextype",
+	"description": "FlexType is a Gutenberg block plugin that provides visitor text resizing controls.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.3.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"format": "phpcbf",
+		"lint": "phpcs"
+	}
+}
