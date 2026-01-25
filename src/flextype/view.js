@@ -1,4 +1,3 @@
-/* global localStorage */
 /**
  * FlexType Frontend JavaScript
  *
@@ -130,7 +129,7 @@
 	 */
 	function saveScale(scale) {
 		try {
-			localStorage.setItem(STORAGE_KEY, scale.toString());
+			window.localStorage.setItem(STORAGE_KEY, scale.toString());
 		} catch (e) {
 			// localStorage not available, fail silently
 		}
@@ -143,7 +142,7 @@
 	 */
 	function getSavedScale() {
 		try {
-			const saved = localStorage.getItem(STORAGE_KEY);
+			const saved = window.localStorage.getItem(STORAGE_KEY);
 			if (saved) {
 				const scale = parseFloat(saved);
 				if (!isNaN(scale)) {
