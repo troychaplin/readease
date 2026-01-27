@@ -18,11 +18,44 @@
 // Scaling styles are injected by JavaScript only when scale !== 1
 // This preserves theme defaults at scale 1 and applies multiplier when changed
 
+// =============================================================================
+// CSS Custom Properties (Theming API)
+// =============================================================================
+// Override these variables in your theme CSS to customize the block appearance.
+// Example:
+//   .wp-block-readease-text-resizer {
+//     --text-resizer-border-radius: 8px;
+//     --text-resizer-button-bg-hover: rgba(0, 0, 0, 0.1);
+//   }
+
 // Block container
 .wp-block-readease-text-resizer {
+	// Layout
+	--text-resizer-gap: 0.75em;
+	--text-resizer-controls-gap: 0.25em;
+
+	// Colors
+	--text-resizer-button-bg: transparent;
+	--text-resizer-button-bg-hover: rgba(0, 0, 0, 0.05);
+	--text-resizer-button-bg-active: currentcolor;
+	--text-resizer-border-color: currentcolor;
+	--text-resizer-track-bg: rgba(0, 0, 0, 0.1);
+	--text-resizer-thumb-bg: #fff;
+
+	// Borders
+	--text-resizer-border-width: 1px;
+	--text-resizer-border-radius: 4px;
+
+	// Sizing
+	--text-resizer-min-height: 44px;
+	--text-resizer-slider-width: 120px;
+
+	// Transitions
+	--text-resizer-transition-duration: 0.15s;
+
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.75em;
+	gap: var(--text-resizer-gap);
 	align-items: center;
 
 	// Label position: side (default) - row layout
@@ -67,7 +100,7 @@
 .wp-block-readease-text-resizer__controls {
 	display: flex;
 	align-items: center;
-	gap: 0.25em;
+	gap: var(--text-resizer-controls-gap);
 }
 
 // =============================================================================
@@ -87,43 +120,43 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 44px;
-	min-height: 44px;
+	min-width: var(--text-resizer-min-height);
+	min-height: var(--text-resizer-min-height);
 	padding: 0.5em;
-	border: 1px solid currentcolor;
+	border: var(--text-resizer-border-width) solid var(--text-resizer-border-color);
 	border-radius: 0;
-	background: transparent;
+	background: var(--text-resizer-button-bg);
 	color: inherit;
 	font-family: inherit;
 	font-weight: 500;
 	cursor: pointer;
-	transition: background-color 0.15s ease, color 0.15s ease;
+	transition: background-color var(--text-resizer-transition-duration) ease, color var(--text-resizer-transition-duration) ease;
 
 	// Stack borders for adjacent buttons
 	&:not(:first-child) {
-		margin-inline-start: -1px;
+		margin-inline-start: calc(var(--text-resizer-border-width) * -1);
 	}
 
 	// First button rounded on start
 	&:first-child {
-		border-start-start-radius: 4px;
-		border-end-start-radius: 4px;
+		border-start-start-radius: var(--text-resizer-border-radius);
+		border-end-start-radius: var(--text-resizer-border-radius);
 	}
 
 	// Last button rounded on end
 	&:last-child {
-		border-start-end-radius: 4px;
-		border-end-end-radius: 4px;
+		border-start-end-radius: var(--text-resizer-border-radius);
+		border-end-end-radius: var(--text-resizer-border-radius);
 	}
 
 	// Hover state
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--text-resizer-button-bg-hover);
 	}
 
 	// Focus state
 	&:focus {
-		outline: 2px solid currentcolor;
+		outline: 2px solid var(--text-resizer-border-color);
 		outline-offset: 2px;
 		position: relative;
 		z-index: 1;
@@ -131,10 +164,10 @@
 
 	// Active/pressed state
 	&--active {
-		background-color: currentcolor;
+		background-color: var(--text-resizer-button-bg-active);
 
 		&:hover {
-			background-color: currentcolor;
+			background-color: var(--text-resizer-button-bg-active);
 		}
 
 		.wp-block-readease-text-resizer__button-text {
@@ -174,20 +207,20 @@
 }
 
 .wp-block-readease-text-resizer__slider {
-	width: 120px;
+	width: var(--text-resizer-slider-width);
 	height: 8px;
 	margin: 0;
 	padding: 0;
-	border-radius: 4px;
-	background: rgba(0, 0, 0, 0.1);
+	border-radius: var(--text-resizer-border-radius);
+	background: var(--text-resizer-track-bg);
 	appearance: none;
 	cursor: pointer;
 
 	// Webkit track
 	&::-webkit-slider-runnable-track {
 		height: 8px;
-		border-radius: 4px;
-		background: rgba(0, 0, 0, 0.1);
+		border-radius: var(--text-resizer-border-radius);
+		background: var(--text-resizer-track-bg);
 	}
 
 	// Webkit thumb
@@ -195,30 +228,30 @@
 		width: 20px;
 		height: 20px;
 		margin-top: -6px;
-		border: 2px solid currentcolor;
+		border: 2px solid var(--text-resizer-border-color);
 		border-radius: 50%;
-		background: #fff;
+		background: var(--text-resizer-thumb-bg);
 		appearance: none;
 		cursor: pointer;
-		transition: transform 0.15s ease;
+		transition: transform var(--text-resizer-transition-duration) ease;
 	}
 
 	// Firefox track
 	&::-moz-range-track {
 		height: 8px;
-		border-radius: 4px;
-		background: rgba(0, 0, 0, 0.1);
+		border-radius: var(--text-resizer-border-radius);
+		background: var(--text-resizer-track-bg);
 	}
 
 	// Firefox thumb
 	&::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
-		border: 2px solid currentcolor;
+		border: 2px solid var(--text-resizer-border-color);
 		border-radius: 50%;
-		background: #fff;
+		background: var(--text-resizer-thumb-bg);
 		cursor: pointer;
-		transition: transform 0.15s ease;
+		transition: transform var(--text-resizer-transition-duration) ease;
 	}
 
 	// Focus state
@@ -227,12 +260,12 @@
 	}
 
 	&:focus::-webkit-slider-thumb {
-		outline: 2px solid currentcolor;
+		outline: 2px solid var(--text-resizer-border-color);
 		outline-offset: 2px;
 	}
 
 	&:focus::-moz-range-thumb {
-		outline: 2px solid currentcolor;
+		outline: 2px solid var(--text-resizer-border-color);
 		outline-offset: 2px;
 	}
 
@@ -270,11 +303,11 @@
 
 .wp-block-readease-text-resizer__select {
 	min-width: 100px;
-	min-height: 44px;
+	min-height: var(--text-resizer-min-height);
 	padding: 0.5em 2em 0.5em 0.75em;
-	border: 1px solid currentcolor;
-	border-radius: 4px;
-	background-color: transparent;
+	border: var(--text-resizer-border-width) solid var(--text-resizer-border-color);
+	border-radius: var(--text-resizer-border-radius);
+	background-color: var(--text-resizer-button-bg);
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='currentColor' d='M6 8.825L1.175 4 2.238 2.938 6 6.7 9.763 2.937 10.825 4z'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-position: right 0.75em center;
@@ -286,16 +319,16 @@
 	line-height: 1.4;
 	cursor: pointer;
 	appearance: none;
-	transition: background-color 0.15s ease;
+	transition: background-color var(--text-resizer-transition-duration) ease;
 
 	// Hover state
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--text-resizer-button-bg-hover);
 	}
 
 	// Focus state
 	&:focus {
-		outline: 2px solid currentcolor;
+		outline: 2px solid var(--text-resizer-border-color);
 		outline-offset: 2px;
 	}
 
@@ -311,7 +344,7 @@
 // =============================================================================
 
 .wp-block-readease-text-resizer__controls--icons {
-	gap: 0.25em;
+	gap: var(--text-resizer-controls-gap);
 }
 
 // Icon button text (the "A" for reset) - defined first for proper cascade
@@ -325,15 +358,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 44px;
-	height: 44px;
+	width: var(--text-resizer-min-height);
+	height: var(--text-resizer-min-height);
 	padding: 0;
-	border: 1px solid currentcolor;
-	border-radius: 4px;
-	background: transparent;
+	border: var(--text-resizer-border-width) solid var(--text-resizer-border-color);
+	border-radius: var(--text-resizer-border-radius);
+	background: var(--text-resizer-button-bg);
 	color: inherit;
 	cursor: pointer;
-	transition: background-color 0.15s ease, opacity 0.15s ease;
+	transition: background-color var(--text-resizer-transition-duration) ease, opacity var(--text-resizer-transition-duration) ease;
 
 	// SVG icon styling
 	svg {
@@ -343,7 +376,7 @@
 
 	// Focus state
 	&:focus {
-		outline: 2px solid currentcolor;
+		outline: 2px solid var(--text-resizer-border-color);
 		outline-offset: 2px;
 	}
 
@@ -355,12 +388,12 @@
 
 	// Hover state (must come after focus and disabled)
 	&:hover:not(:disabled) {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--text-resizer-button-bg-hover);
 	}
 
 	// Active/pressed state (reset button)
 	&--active {
-		background-color: currentcolor;
+		background-color: var(--text-resizer-button-bg-active);
 
 		svg {
 			filter: invert(1);
@@ -371,7 +404,7 @@
 		}
 
 		&:hover:not(:disabled) {
-			background-color: currentcolor;
+			background-color: var(--text-resizer-button-bg-active);
 		}
 	}
 }
