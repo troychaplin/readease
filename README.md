@@ -1,4 +1,4 @@
-<img src="assets/banner-772x250.png" alt="Sketch-style illustration showing the letter A growing progressively larger from left to right" style="width: 100%; height: auto;">
+<img src="assets/github-banner.jpg" alt="Sketch-style illustration showing the letter A growing progressively larger from left to right" style="width: 100%; height: auto;">
 
 # ReadEase: Text Resizer
 
